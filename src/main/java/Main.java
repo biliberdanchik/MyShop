@@ -20,8 +20,19 @@ public class Main {
             int actionNumber = Integer.parseInt(scanner.nextLine());
 
             if (Objects.equals(actionNumber, 1)) {
-                System.out.println("тут заполнение каталога");
-
+                if (!Catalog.isCatalog()) {
+                    HashMap<Integer, Product> catalog = new HashMap<>();
+                    System.out.println("Заполните каталог товарами");
+                    int i = 0;
+                    do {
+                        catalog.put(i, Product.getProductAfterScanner(scanner, i));
+                        i++;
+                        System.out.println("Для добавления следующей позиции в каталог введите '+'");
+                    } while (Objects.equals(scanner.nextLine(), "+"));
+                    Catalog catalog1 = new Catalog(catalog);
+                } else {
+                    System.out.println("Каталог уже создан");
+                }
 
             } else if (Objects.equals(actionNumber, 2)) {
                 //Добавление нового товара в каталог

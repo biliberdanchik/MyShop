@@ -1,11 +1,16 @@
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Catalog {
     private HashMap<Integer, Product> catalog;
+    private static boolean isCatalog = false;
 
     public Catalog(HashMap<Integer, Product> catalog) {
+        isCatalog = true;
         this.catalog = catalog;
+    }
+
+    public static boolean isCatalog() {
+        return isCatalog;
     }
 
 
