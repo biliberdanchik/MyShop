@@ -21,6 +21,8 @@ public class Catalog {
     public void setCatalog(HashMap<Integer, Product> catalog) {
         this.catalog = catalog;
     }
+
+
 }
 
 

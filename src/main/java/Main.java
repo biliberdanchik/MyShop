@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Catalog catalog1 = null;
 
         do {
             System.out.printf(
@@ -20,27 +21,47 @@ public class Main {
             int actionNumber = Integer.parseInt(scanner.nextLine());
 
             if (Objects.equals(actionNumber, 1)) {
-                if (!Catalog.isCatalog()) {
-                    HashMap<Integer, Product> catalog = new HashMap<>();
+                if (!Catalog.isCatalog()) { //Если каталога не существует, то создать новый
+                    HashMap<Integer, Product> newCatalog = new HashMap<>();
                     System.out.println("Заполните каталог товарами");
                     int i = 0;
                     do {
-                        catalog.put(i, Product.getProductAfterScanner(scanner, i));
+                        newCatalog.put(i, Product.getProductAfterScanner(scanner, i));
                         i++;
                         System.out.println("Для добавления следующей позиции в каталог введите '+'");
                     } while (Objects.equals(scanner.nextLine(), "+"));
-                    Catalog catalog1 = new Catalog(catalog);
-                } else {
-                    System.out.println("Каталог уже создан");
+
+                    catalog1 = new Catalog(newCatalog);
+
+
+                } else {                    //Если существует, то не создаем новый
+                    System.out.println("Каталог уже создан, добавь в него новый товар.");
+
                 }
 
             } else if (Objects.equals(actionNumber, 2)) {
                 //Добавление нового товара в каталог
+                if (Catalog.isCatalog()) {
+
+                } else {
+                    System.out.println("Каталога не существует");
+                }
+
                 System.out.println("тут добавляем новый товар в каталог");
 
             } else if (Objects.equals(actionNumber, 3)) {
                 //Вывод каталога на экран
-                System.out.println("вывести каталог на экран");
+                if (Catalog.isCatalog()) {
+                    System.out.println("Текущий каталог:");
+                    for (int j = 0; j < catalog1.getCatalog().size(); j++) {
+                        System.out.printf("%d %s (Страна: %s, Остаток: %.2f)%n",
+                                catalog1.getCatalog().get(j).getId(),
+                                catalog1.getCatalog().get(j).getName(),
+                                catalog1.getCatalog().get(j).getCountry(),
+                                catalog1.getCatalog().get(j).getBalance());
+                }
+
+                }
 
             } else if (Objects.equals(actionNumber, 4)) { //Добавление товара в корзину
                 System.out.println("добавление нового товара в корзину");
@@ -55,24 +76,17 @@ public class Main {
 
 
         //Заполнение каталога
-        HashMap<Integer, Product> catalog = new HashMap<>();
-        System.out.println("Заполните каталог товарами");
-        int i = 0;
-        do {
-            catalog.put(i, Product.getProductAfterScanner(scanner, i));
-            i++;
-            System.out.println("Для добавления следующей позиции в каталог введите '+'");
-        } while (Objects.equals(scanner.nextLine(), "+"));
+//        HashMap<Integer, Product> catalog = new HashMap<>();
+//        System.out.println("Заполните каталог товарами");
+//        int i = 0;
+//        do {
+//            catalog.put(i, Product.getProductAfterScanner(scanner, i));
+//            i++;
+//            System.out.println("Для добавления следующей позиции в каталог введите '+'");
+//        } while (Objects.equals(scanner.nextLine(), "+"));
 
         //Вывод каталога на экран
-        System.out.println("Текущий каталог:");
-        for (int j = 0; j < catalog.size(); j++) {
-            System.out.printf("%d %s (Страна: %s, Остаток: %.2f)%n",
-                    catalog.get(j).getId(),
-                    catalog.get(j).getName(),
-                    catalog.get(j).getCountry(),
-                    catalog.get(j).getBalance());
-        }
+
 
         System.out.println("Для добавления товара в корзину введи его номер из каталога: ");
 
