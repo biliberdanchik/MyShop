@@ -22,6 +22,7 @@ public class Main {
             if (Objects.equals(actionNumber, 1)) {
                 System.out.println("тут заполнение каталога");
 
+
             } else if (Objects.equals(actionNumber, 2)) {
                 //Добавление нового товара в каталог
                 System.out.println("тут добавляем новый товар в каталог");
