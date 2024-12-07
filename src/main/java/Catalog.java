@@ -9,6 +9,14 @@ public class Catalog {
     }
 
 
+    public HashMap<Integer, Product> getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(HashMap<Integer, Product> catalog) {
+        this.catalog = catalog;
+    }
 }
+
 
 

@@ -20,15 +20,7 @@ public class Main {
             int actionNumber = Integer.parseInt(scanner.nextLine());
 
             if (Objects.equals(actionNumber, 1)) {
-                //Заполнение каталога товарами
-                HashMap<Integer, Product> catalog = new HashMap<>();
-                System.out.println("Заполните каталог товарами");
-                int i = 0;
-                do {
-                    catalog.put(i, Product.getProductAfterScanner(scanner, i));
-                    i++;
-                    System.out.println("Для добавления следующей позиции в каталог введите '+'");
-                } while (Objects.equals(scanner.nextLine(), "+"));
+                System.out.println("тут заполнение каталога");
 
             } else if (Objects.equals(actionNumber, 2)) {
                 //Добавление нового товара в каталог
