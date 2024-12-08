@@ -42,13 +42,16 @@ public class Main {
             } else if (Objects.equals(actionNumber, 2)) {
                 //Добавление нового товара в каталог
                 if (Catalog.isCatalog()) {
-
+                    System.out.println("Введите данные для нового товара");
+                    int i = catalog1.getCatalog().size();
+                    do {
+                        catalog1.getCatalog().put(i, Product.getProductAfterScanner(scanner, i));
+                        i++;
+                        System.out.println("Для добавления следующей позиции в каталог введите '+'");
+                    } while (Objects.equals(scanner.nextLine(), "+"));
                 } else {
                     System.out.println("Каталога не существует");
                 }
-
-                System.out.println("тут добавляем новый товар в каталог");
-
             } else if (Objects.equals(actionNumber, 3)) {
                 //Вывод каталога на экран
                 if (Catalog.isCatalog()) {
@@ -59,9 +62,10 @@ public class Main {
                                 catalog1.getCatalog().get(j).getName(),
                                 catalog1.getCatalog().get(j).getCountry(),
                                 catalog1.getCatalog().get(j).getBalance());
-                }
-
-                }
+                        }
+                    } else {
+                    System.out.println("Каталога не существует");
+                    }
 
             } else if (Objects.equals(actionNumber, 4)) { //Добавление товара в корзину
                 System.out.println("добавление нового товара в корзину");
